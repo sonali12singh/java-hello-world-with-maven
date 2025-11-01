@@ -21,16 +21,9 @@ pipeline{
             }
         }
 
-        stage('Test') {
-            steps {
-                echo "Running unit tests..."
-                sh 'mvn test'
-
-                post{
-                    always{             
-                        junit 'target/surefile-reports/*.xml'
-                    }
-                }
+        stage('UNIT Test') {
+            steps {sh 'mvn test'}
+                post{always{ junit 'target/surefile-reports/*.xml'}}
         }
 
         stage('Deploy to QA') {
