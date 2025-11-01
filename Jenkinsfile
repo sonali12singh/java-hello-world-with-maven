@@ -35,6 +35,10 @@ pipeline{
             }
         }
     }
+    post {
+        always{
+            junit 'target/surefile-reports/*.xml'
+        }
 
     post {
         success {
