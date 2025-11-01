@@ -6,34 +6,42 @@ pipeline{
          jdk 'java'
     }
 
-    stages{
-        stage('checkout'){
-            steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github access', url: 'https://github.com/sreenivas449/java-hello-world-with-maven.git']]])
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/sonali12singh/java-hello-world-with-maven.git'
             }
         }
-        stage('build'){
-            steps{
-               sh  'mvn clean package'
+
+        stage('Build') {
+            steps {
+                echo "Building the code..."
+                // Example for Maven:
+                // sh 'mvn clean package'
             }
         }
-        stage('Test'){
-            steps{
-                sh "Running unit test"
-                sh "mvn test"
+
+        stage('Test') {
+            steps {
+                echo "Running unit tests..."
+                // sh 'mvn test'
             }
         }
-        stage('Deploy to Qa ENv'){
-            steps{
-                echo "Deploying to QA ENV"
+
+        stage('Deploy to QA') {
+            steps {
+                echo "Deploying to QA environment..."
+                // Deploy to your QA node (if configured)
             }
         }
-        post{
-            success{
-                echo "Build is success"
-            }
-            failure{
-                echo "build failed"
-            }
+    }
+
+    post {
+        success {
+            echo "Build Successful! "
+        }
+        failure {
+            echo "Build Failed "
+        }
     }
 }
