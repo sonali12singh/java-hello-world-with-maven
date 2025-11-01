@@ -44,5 +44,4 @@ pipeline{
                  body: "The build failed. Check Jenkins console output at ${env.BUILD_URL} for details."
         }
     }
-    }
 }
