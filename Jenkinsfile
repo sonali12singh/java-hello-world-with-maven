@@ -25,7 +25,12 @@ pipeline{
             steps {
                 echo "Running unit tests..."
                 sh 'mvn test'
-            }
+
+                post{
+                    always{             
+                        junit 'target/surefile-reports/*.xml'
+                    }
+                }
         }
 
         stage('Deploy to QA') {
@@ -35,11 +40,6 @@ pipeline{
             }
         }
     }
-    post {
-        always{
-            junit 'target/surefile-reports/*.xml'
-        }
-
     post {
         success {
             echo "Build Successful! "
