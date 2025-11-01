@@ -14,8 +14,26 @@ pipeline{
         }
         stage('build'){
             steps{
-               bat 'mvn package'
+               sh  'mvn clean package'
             }
         }
+        stage('Test'){
+            steps{
+                sh "Running unit test"
+                sh "mvn test"
+            }
+        }
+        stage('Deploy to Qa ENv'){
+            steps{
+                echo "Deploying to QA ENV"
+            }
+        }
+        post{
+            success{
+                echo "Build is success"
+            }
+            failure{
+                echo "build failed"
+            }
     }
 }
