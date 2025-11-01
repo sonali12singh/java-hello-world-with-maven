@@ -21,18 +21,21 @@ pipeline{
             }
         }
 
-        stage('Unit Test') {
-    steps {
-        sh 'mvn test'
-    }
+        stage('Test') {
+            steps {
+                echo "Running unit tests..."
+                sh 'mvn test'
+            }
+        }
 
         stage('Deploy to QA') {
             steps {
                 echo "Deploying to QA environment..."
-                
+                //Deploy to your QA node (if configured)
             }
         }
     }
+       
     post {
         success {
             echo "Build Successful! "
