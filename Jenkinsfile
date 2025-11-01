@@ -23,7 +23,7 @@ pipeline{
 
         stage('Unit Test') {
     steps {
-        sh 'mvn test || true' // Don’t fail if tests missing
+        sh 'mvn test'
     }
 
         stage('Deploy to QA') {
