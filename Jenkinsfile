@@ -31,7 +31,7 @@ pipeline{
         stage('Deploy to QA') {
             steps {
                 echo "Deploying to QA environment..."
-                //Deploy to your QA node (if configured)
+                
             }
         }
     }
